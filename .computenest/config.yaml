@@ -1,0 +1,61 @@
+Service:
+  DeployType: ros
+  DeployMetadata:
+    SupplierDeployMetadata:
+      ArtifactRelation:
+        ecs_image_quickstart-openldap:
+          ArtifactId: ${Artifact.Artifact_1.ArtifactId}
+          ArtifactVersion: ${Artifact.Artifact_1.ArtifactVersion}
+      SupplierTemplateConfigs:
+        - Name: ECS单机版
+          Url: 
+            https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/cn-hangzhou/templatef1a934a16b304b5a8b94.yaml?Expires=1762509698&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=OlCCol8uF9KHUNSlnI%2Bu6yfpJsA%3D
+          AllowedRegions:
+            - ap-southeast-1
+    TemplateConfigs:
+      - Name: ECS单机版
+        Url: ros_templates/template1.yaml
+        AllowedRegions:
+          - ap-southeast-1
+        ArchitectureDiagramUrl: 
+          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/cn-hangzhou/architecture0c855a01567f49988a8a.jpg?Expires=1762509698&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=vtHFuvltIv%2BKM%2Btd%2Fya0JDs7cl8%3D
+        DeployScene: ECS
+  OperationMetadata:
+    ModifyParametersConfig:
+      - TemplateName: ECS单机版
+        Operation:
+          - Name: 变更ECS实例规格
+            Description: 变更ECS实例规格
+            Type: Custom
+            Parameters:
+              - EcsInstanceType
+          - Name: 变更ECS实例密码
+            Description: 变更ECS实例密码
+            Type: Custom
+            Parameters:
+              - InstancePassword
+    StatusOperationConfigs:
+      - TemplateName: ECS单机版
+        SupportOperations:
+          - Start
+          - Stop
+          - Restart
+    SupportBackup: true
+  ServiceType: private
+  ServiceInfo:
+    Locale: zh-CN
+    ShortDescription: Service description
+    Image: resources/icons/service_logo.png
+    Name: Openldap社区版
+  ShareType: Public
+  ApprovalType: Manual
+Artifact:
+  Artifact_1:
+    ArtifactType: EcsImage
+    ArtifactName: ecs_image_quickstart-openldap
+    Description: quickstart-openldap EcsImage
+    ArtifactProperty:
+      RegionId: ap-southeast-1
+      ImageId: m-t4nbbwt3ptgsfved03oa
+    SupportRegionIds:
+      - ap-southeast-1
